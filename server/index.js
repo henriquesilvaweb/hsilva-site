@@ -1,8 +1,9 @@
-const { createServer } = require("node:http");
-const { readFile } = require("node:fs/promises");
-const { extname, join, normalize } = require("node:path");
+import { createServer } from "node:http";
+import { readFile } from "node:fs/promises";
+import { extname, join, normalize } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const publicDirectory = join(__dirname, "..");
+const publicDirectory = fileURLToPath(new URL("../", import.meta.url));
 const port = Number(process.env.PORT || 3000);
 const contentTypes = {
   ".css": "text/css; charset=utf-8",
