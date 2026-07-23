@@ -2,7 +2,20 @@ const header = document.querySelector(".site-header");
 const menuToggle = document.querySelector(".menu-toggle");
 const mainNav = document.querySelector(".main-nav");
 const navLinks = document.querySelectorAll(".nav-link");
-const sections = document.querySelectorAll("main section[id]");
+const sections = [...document.querySelectorAll("main section[id]")].filter((section) =>
+  document.querySelector(`.nav-link[href="#${section.id}"]`)
+);
+const aboutPhoto = document.querySelector(".about-photo-image");
+
+if (aboutPhoto) {
+  const showPhotoPlaceholder = () => aboutPhoto.classList.add("is-missing");
+
+  aboutPhoto.addEventListener("error", showPhotoPlaceholder);
+
+  if (aboutPhoto.complete && aboutPhoto.naturalWidth === 0) {
+    showPhotoPlaceholder();
+  }
+}
 
 const closeMenu = () => {
   menuToggle.setAttribute("aria-expanded", "false");
