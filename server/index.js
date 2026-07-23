@@ -1,9 +1,8 @@
 import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
 import { extname, join, normalize } from "node:path";
-import { fileURLToPath } from "node:url";
 
-const publicDirectory = fileURLToPath(new URL("../", import.meta.url));
+const publicDirectory = join(process.cwd(), "dist");
 const port = Number(process.env.PORT || 3000);
 const contentTypes = {
   ".css": "text/css; charset=utf-8",
