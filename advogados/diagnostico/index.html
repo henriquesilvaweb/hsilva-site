@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Seu escritório está preparado? — H.SILVA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
@@ -106,6 +107,9 @@
   }
   .link-secondary:hover{border-color:var(--green);}
 
+  .mobile-step-status,
+  .mobile-back{display:none;}
+
   @media (max-width:560px){
     .wrap{padding:56px 20px 80px;}
     h1{font-size:28px;}
@@ -113,6 +117,72 @@
     .question{flex-direction:column;align-items:flex-start;gap:12px;}
     .q-toggle{width:100%;}
     .q-btn{flex:1;text-align:center;}
+  }
+
+  @media (max-width:768px){
+    body{overflow-x:hidden;}
+    .wrap{width:100%;padding:48px 20px 72px;}
+    h1{font-size:clamp(28px,8vw,34px);line-height:1.2;}
+    .lede{font-size:16px;margin-bottom:36px;}
+
+    .mobile-step-status{
+      display:flex;align-items:center;justify-content:space-between;
+      margin-bottom:12px;color:var(--text-2);font-size:13px;font-weight:500;
+    }
+    .progress-track{margin-bottom:32px;}
+    #questions{min-height:310px;}
+    .question{
+      display:none;min-height:300px;padding:30px 0;border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;
+      justify-content:center;gap:34px;
+    }
+    .question.mobile-current{display:flex;animation:mobile-question-in .18s ease both;}
+    .q-row{display:block;width:100%;}
+    .q-num{display:none;}
+    .q-text{display:block;font-size:clamp(21px,6vw,26px);line-height:1.38;}
+    .q-toggle{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;gap:12px;}
+    .q-btn{
+      width:100%;min-height:60px;padding:15px 12px;font-size:14px;font-weight:500;
+      text-align:center;text-transform:uppercase;
+    }
+    .submit-row{display:none;}
+    .mobile-back{
+      min-height:44px;margin-top:18px;padding:8px 0;border:0;color:var(--text-2);
+      background:transparent;font-family:var(--sans);font-size:14px;cursor:pointer;
+    }
+    .mobile-back:not([hidden]){display:inline-flex;align-items:center;}
+
+    .mobile-result-mode > .eyebrow,
+    .mobile-result-mode > h1,
+    .mobile-result-mode > .lede,
+    .mobile-result-mode > .mobile-step-status,
+    .mobile-result-mode > .progress-track,
+    .mobile-result-mode > #questions,
+    .mobile-result-mode > .mobile-back,
+    .mobile-result-mode > .submit-row{display:none;}
+    .mobile-result-mode .result{margin-top:0;padding-top:0;border-top:0;}
+    .result.show{width:100%;}
+    .score-num{font-size:58px;}
+    .result-title{font-size:28px;line-height:1.3;}
+    .result-body{font-size:16px;}
+    .community-cta{padding:22px 20px;}
+    .community-text{font-size:15px;}
+    .community-cta .btn-primary{
+      display:block!important;width:100%;min-height:52px;text-align:center;
+    }
+    .cta-strip{flex-direction:column;align-items:flex-start;}
+    .cta-strip p{font-size:15px;}
+    .link-secondary{display:inline-flex;min-height:44px;align-items:center;}
+  }
+
+  @keyframes mobile-question-in{
+    from{opacity:0;transform:translateY(8px);}
+    to{opacity:1;transform:none;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .question.mobile-current{animation:none;}
+    .progress-fill{transition:none;}
   }
 </style>
 </head>
@@ -123,9 +193,14 @@
   <h1>Seu escritório está preparado para as novas formas de busca?</h1>
   <p class="lede">15 perguntas simples. Sem cadastro, sem e-mail. No final você vê onde estão as lacunas — e o que fazer a respeito.</p>
 
+  <div class="mobile-step-status" aria-live="polite">
+    <span id="mobileStepLabel">Pergunta 1 de 15</span>
+  </div>
   <div class="progress-track"><div class="progress-fill" id="progress"></div></div>
 
   <div id="questions"></div>
+
+  <button class="mobile-back" id="mobileBack" type="button" hidden>← Voltar</button>
 
   <div class="submit-row">
     <button class="btn-primary" id="submitBtn" disabled>Ver resultado</button>
@@ -174,22 +249,61 @@ const perguntas = [
 
 const respostas = new Array(perguntas.length).fill(null);
 const container = document.getElementById('questions');
+const wrap = document.querySelector('.wrap');
+const mobileQuiz = window.matchMedia('(max-width: 768px)');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const mobileStepLabel = document.getElementById('mobileStepLabel');
+const mobileBack = document.getElementById('mobileBack');
+let mobileQuestionIndex = 0;
+let advanceTimer;
 
 perguntas.forEach((texto, i) => {
   const div = document.createElement('div');
   div.className = 'question';
+  div.tabIndex = -1;
   div.innerHTML = `
     <div class="q-row" style="flex:1;">
       <span class="q-num">${String(i+1).padStart(2,'0')}</span>
       <span class="q-text">${texto}</span>
     </div>
     <div class="q-toggle">
-      <button class="q-btn" data-i="${i}" data-v="1">Sim</button>
-      <button class="q-btn" data-i="${i}" data-v="0">Não</button>
+      <button class="q-btn" type="button" data-i="${i}" data-v="1" aria-pressed="false" aria-label="Sim — ${texto}">Sim</button>
+      <button class="q-btn" type="button" data-i="${i}" data-v="0" aria-pressed="false" aria-label="Não — ${texto}">Não</button>
     </div>
   `;
   container.appendChild(div);
 });
+
+function renderMobileQuestion(focusQuestion = false){
+  const questions = [...container.querySelectorAll('.question')];
+
+  if(!mobileQuiz.matches){
+    questions.forEach(question => {
+      question.classList.remove('mobile-current');
+      question.removeAttribute('aria-hidden');
+    });
+    wrap.classList.remove('mobile-result-mode');
+    return;
+  }
+
+  mobileStepLabel.textContent = `Pergunta ${mobileQuestionIndex + 1} de ${perguntas.length}`;
+  mobileBack.hidden = mobileQuestionIndex === 0;
+
+  questions.forEach((question, index) => {
+    const isCurrent = index === mobileQuestionIndex;
+    question.classList.toggle('mobile-current', isCurrent);
+    question.setAttribute('aria-hidden', String(!isCurrent));
+  });
+
+  if(focusQuestion){
+    const currentQuestion = questions[mobileQuestionIndex];
+    currentQuestion.scrollIntoView({
+      behavior: reducedMotion.matches ? 'auto' : 'smooth',
+      block: 'center'
+    });
+    currentQuestion.querySelector('.q-btn').focus({preventScroll:true});
+  }
+}
 
 container.addEventListener('click', (e) => {
   if(!e.target.matches('.q-btn')) return;
@@ -198,10 +312,26 @@ container.addEventListener('click', (e) => {
   respostas[i] = v;
 
   const row = e.target.closest('.question').querySelectorAll('.q-btn');
-  row.forEach(b => b.classList.remove('active-yes','active-no'));
+  row.forEach(b => {
+    b.classList.remove('active-yes','active-no');
+    b.setAttribute('aria-pressed','false');
+  });
   e.target.classList.add(v === 1 ? 'active-yes' : 'active-no');
+  e.target.setAttribute('aria-pressed','true');
 
   updateProgress();
+
+  if(mobileQuiz.matches){
+    clearTimeout(advanceTimer);
+    advanceTimer = setTimeout(() => {
+      if(i === perguntas.length - 1){
+        showResult();
+        return;
+      }
+      mobileQuestionIndex = i + 1;
+      renderMobileQuestion(true);
+    }, reducedMotion.matches ? 0 : 180);
+  }
 });
 
 function updateProgress(){
@@ -220,7 +350,7 @@ function updateProgress(){
   }
 }
 
-document.getElementById('submitBtn').addEventListener('click', () => {
+function showResult(){
   const score = respostas.reduce((a,b) => a+b, 0);
   document.getElementById('scoreNum').textContent = score;
 
@@ -243,8 +373,34 @@ document.getElementById('submitBtn').addEventListener('click', () => {
   document.getElementById('resultBody').textContent = body;
   document.getElementById('ctaText').textContent = cta;
   document.getElementById('result').classList.add('show');
-  document.getElementById('result').scrollIntoView({behavior:'smooth', block:'start'});
+  if(mobileQuiz.matches) wrap.classList.add('mobile-result-mode');
+  document.getElementById('result').scrollIntoView({
+    behavior:reducedMotion.matches ? 'auto' : 'smooth',
+    block:'start'
+  });
+}
+
+document.getElementById('submitBtn').addEventListener('click', showResult);
+
+mobileBack.addEventListener('click', () => {
+  clearTimeout(advanceTimer);
+  if(mobileQuestionIndex === 0) return;
+  mobileQuestionIndex -= 1;
+  renderMobileQuestion(true);
 });
+
+mobileQuiz.addEventListener('change', () => {
+  if(mobileQuiz.matches){
+    const firstUnanswered = respostas.findIndex(resposta => resposta === null);
+    mobileQuestionIndex = firstUnanswered === -1 ? perguntas.length - 1 : firstUnanswered;
+    if(document.getElementById('result').classList.contains('show')){
+      wrap.classList.add('mobile-result-mode');
+    }
+  }
+  renderMobileQuestion();
+});
+
+renderMobileQuestion();
 </script>
 
 </body>
