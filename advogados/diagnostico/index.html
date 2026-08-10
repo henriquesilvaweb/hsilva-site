@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Seu escritório está preparado? — H.SILVA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#07090a;
+    --card:#0f1512;
+    --line:rgba(255,255,255,0.08);
+    --line-strong:rgba(255,255,255,0.16);
+    --green:#6ee7a4;
+    --green-dim:#3a7a5a;
+    --green-bg:rgba(110,231,164,0.08);
+    --text:#eef1ee;
+    --text-2:#a8b0aa;
+    --text-3:#6b746e;
+    --serif:'Fraunces', serif;
+    --sans:'Inter', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--bg);color:var(--text);font-family:var(--sans);
+    line-height:1.6;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:80px 32px 100px;}
+
+  .eyebrow{
+    font-size:12px;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--text-3);margin-bottom:24px;display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:24px;height:1px;background:var(--green-dim);display:inline-block;}
+
+  h1{
+    font-family:var(--serif);font-weight:400;font-size:38px;line-height:1.25;
+    margin-bottom:16px;letter-spacing:-0.01em;
+  }
+  .lede{font-size:15px;color:var(--text-2);max-width:520px;margin-bottom:48px;}
+
+  .progress-track{
+    height:2px;background:var(--line);border-radius:2px;margin-bottom:48px;
+    position:relative;overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;background:var(--green);width:0%;transition:width .3s ease;
+  }
+
+  .question{
+    border-bottom:1px solid var(--line);padding:24px 0;
+    display:flex;align-items:center;justify-content:space-between;gap:24px;
+  }
+  .question:first-of-type{border-top:1px solid var(--line);}
+  .q-num{font-family:var(--serif);font-size:13px;color:var(--text-3);min-width:22px;}
+  .q-text{font-size:15px;color:var(--text);flex:1;}
+  .q-row{display:flex;gap:24px;align-items:flex-start;}
+
+  .q-toggle{display:flex;gap:8px;flex-shrink:0;}
+  .q-btn{
+    font-family:var(--sans);font-size:13px;color:var(--text-2);
+    background:transparent;border:1px solid var(--line-strong);
+    padding:8px 18px;border-radius:2px;cursor:pointer;transition:all .15s;
+  }
+  .q-btn:hover{border-color:var(--text-2);}
+  .q-btn.active-yes{background:var(--green-bg);border-color:var(--green);color:var(--green);}
+  .q-btn.active-no{background:rgba(255,255,255,0.06);border-color:var(--line-strong);color:var(--text);}
+
+  .submit-row{margin-top:48px;display:flex;align-items:center;gap:16px;}
+  .btn-primary{
+    font-family:var(--sans);background:var(--green);color:#08110d;font-size:14px;font-weight:500;
+    padding:13px 28px;border-radius:2px;border:none;cursor:pointer;transition:background .2s;
+  }
+  .btn-primary:hover{background:#83edb6;}
+  .btn-primary:disabled{background:var(--line-strong);color:var(--text-3);cursor:not-allowed;}
+  .hint{font-size:13px;color:var(--text-3);}
+
+  .result{
+    display:none;border-top:1px solid var(--line-strong);margin-top:56px;padding-top:48px;
+  }
+  .result.show{display:block;}
+  .score-row{display:flex;align-items:baseline;gap:12px;margin-bottom:20px;}
+  .score-num{font-family:var(--serif);font-size:52px;color:var(--green);line-height:1;}
+  .score-total{font-family:var(--serif);font-size:22px;color:var(--text-3);}
+  .result-title{font-family:var(--serif);font-size:24px;font-weight:400;margin-bottom:16px;max-width:480px;}
+  .result-body{font-size:15px;color:var(--text-2);max-width:480px;margin-bottom:32px;}
+
+  .community-cta{
+    background:var(--green-bg);border:1px solid var(--green-dim);border-radius:8px;
+    padding:24px 26px;margin-bottom:24px;
+  }
+  .community-tag{
+    display:block;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;
+    color:var(--green);margin-bottom:10px;
+  }
+  .community-text{font-size:14px;color:var(--text-2);max-width:420px;margin-bottom:16px;}
+
+  .cta-strip{
+    padding-top:28px;border-top:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  }
+  .cta-strip p{font-size:14px;color:var(--text-2);max-width:380px;}
+  .link-secondary{
+    font-size:14px;color:var(--text);border-bottom:1px solid var(--line-strong);
+    padding-bottom:2px;white-space:nowrap;
+  }
+  .link-secondary:hover{border-color:var(--green);}
+
+  @media (max-width:560px){
+    .wrap{padding:56px 20px 80px;}
+    h1{font-size:28px;}
+    .q-row{flex-direction:column;gap:12px;width:100%;}
+    .question{flex-direction:column;align-items:flex-start;gap:12px;}
+    .q-toggle{width:100%;}
+    .q-btn{flex:1;text-align:center;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <p class="eyebrow">Diagnóstico rápido</p>
+  <h1>Seu escritório está preparado para as novas formas de busca?</h1>
+  <p class="lede">15 perguntas simples. Sem cadastro, sem e-mail. No final você vê onde estão as lacunas — e o que fazer a respeito.</p>
+
+  <div class="progress-track"><div class="progress-fill" id="progress"></div></div>
+
+  <div id="questions"></div>
+
+  <div class="submit-row">
+    <button class="btn-primary" id="submitBtn" disabled>Ver resultado</button>
+    <span class="hint" id="hint">Responda todas as perguntas para continuar</span>
+  </div>
+
+  <div class="result" id="result">
+    <div class="score-row">
+      <span class="score-num" id="scoreNum">0</span>
+      <span class="score-total">/ 15</span>
+    </div>
+    <h2 class="result-title" id="resultTitle"></h2>
+    <p class="result-body" id="resultBody"></p>
+
+    <div class="community-cta">
+      <span class="community-tag">Continue acompanhando esse assunto</span>
+      <p class="community-text">Criei uma comunidade para compartilhar testes, mudanças e aplicações práticas de IA, busca e presença digital no mercado jurídico. Conteúdo direto, pensado para quem quer acompanhar essas mudanças sem precisar estudar tecnologia todos os dias.</p>
+      <a href="#" class="btn-primary" style="display:inline-block;">Entrar na comunidade</a>
+    </div>
+
+    <div class="cta-strip">
+      <p id="ctaText">Se preferir, posso analisar seu site com mais profundidade e mostrar exatamente por onde começar.</p>
+      <a href="#" class="link-secondary">Solicitar análise →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const perguntas = [
+  "Cada área de atuação tem uma página própria no site?",
+  "Existe uma seção de perguntas frequentes (FAQ)?",
+  "O site foi atualizado nos últimos 3 meses?",
+  "Um cliente encontra facilmente como falar com você?",
+  "O site carrega rápido no celular?",
+  "Os textos evitam juridiquês excessivo?",
+  "Existe algum conteúdo em blog ou artigos?",
+  "O perfil do escritório no Google está completo e atualizado?",
+  "O nome do escritório aparece com clareza assim que o site abre?",
+  "Existem depoimentos ou casos de clientes, mesmo que resumidos?",
+  "O site funciona bem tanto no computador quanto no celular?",
+  "Existe uma forma clara de agendar ou solicitar contato?",
+  "As páginas têm títulos que descrevem claramente o que cada uma oferece?",
+  "O escritório está ativo em pelo menos uma rede social?",
+  "Se alguém perguntasse a uma IA sobre sua área, seu escritório provavelmente apareceria?"
+];
+
+const respostas = new Array(perguntas.length).fill(null);
+const container = document.getElementById('questions');
+
+perguntas.forEach((texto, i) => {
+  const div = document.createElement('div');
+  div.className = 'question';
+  div.innerHTML = `
+    <div class="q-row" style="flex:1;">
+      <span class="q-num">${String(i+1).padStart(2,'0')}</span>
+      <span class="q-text">${texto}</span>
+    </div>
+    <div class="q-toggle">
+      <button class="q-btn" data-i="${i}" data-v="1">Sim</button>
+      <button class="q-btn" data-i="${i}" data-v="0">Não</button>
+    </div>
+  `;
+  container.appendChild(div);
+});
+
+container.addEventListener('click', (e) => {
+  if(!e.target.matches('.q-btn')) return;
+  const i = parseInt(e.target.dataset.i);
+  const v = parseInt(e.target.dataset.v);
+  respostas[i] = v;
+
+  const row = e.target.closest('.question').querySelectorAll('.q-btn');
+  row.forEach(b => b.classList.remove('active-yes','active-no'));
+  e.target.classList.add(v === 1 ? 'active-yes' : 'active-no');
+
+  updateProgress();
+});
+
+function updateProgress(){
+  const respondidas = respostas.filter(r => r !== null).length;
+  const pct = Math.round((respondidas / perguntas.length) * 100);
+  document.getElementById('progress').style.width = pct + '%';
+
+  const btn = document.getElementById('submitBtn');
+  const hint = document.getElementById('hint');
+  if(respondidas === perguntas.length){
+    btn.disabled = false;
+    hint.textContent = 'Tudo respondido';
+  } else {
+    btn.disabled = true;
+    hint.textContent = `${respondidas} de ${perguntas.length} respondidas`;
+  }
+}
+
+document.getElementById('submitBtn').addEventListener('click', () => {
+  const score = respostas.reduce((a,b) => a+b, 0);
+  document.getElementById('scoreNum').textContent = score;
+
+  let title, body, cta;
+  if(score >= 12){
+    title = 'Presença digital sólida.';
+    body = 'Seu escritório está bem estruturado. Os próximos ganhos provavelmente estão em detalhes finos: conteúdo mais frequente, páginas mais específicas por área, e reforço de autoridade.';
+    cta = 'Se quiser revisar os últimos detalhes, posso dar uma olhada mais a fundo.';
+  } else if(score >= 7){
+    title = 'Base existe, mas há lacunas importantes.';
+    body = 'Seu escritório tem alguns fundamentos, mas ainda deixa espaço para clientes — e IAs — não encontrarem informação suficiente. Vale priorizar o que faltou nas respostas "não".';
+    cta = 'Posso analisar seu site com mais profundidade e mostrar por onde começar.';
+  } else {
+    title = 'Seu escritório provavelmente está pouco visível hoje.';
+    body = 'Com esse resultado, é provável que tanto clientes quanto Inteligências Artificiais tenham dificuldade em entender e recomendar seu escritório. A boa notícia: as correções costumam ser mais simples do que parecem.';
+    cta = 'Posso te mostrar exatamente o que priorizar primeiro.';
+  }
+
+  document.getElementById('resultTitle').textContent = title;
+  document.getElementById('resultBody').textContent = body;
+  document.getElementById('ctaText').textContent = cta;
+  document.getElementById('result').classList.add('show');
+  document.getElementById('result').scrollIntoView({behavior:'smooth', block:'start'});
+});
+</script>
+
+</body>
+</html>

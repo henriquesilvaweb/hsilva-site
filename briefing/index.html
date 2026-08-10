@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Briefing para criação de sites com Henrique Silva. Conte sobre sua empresa, objetivos e preferências para o novo projeto.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#080a09">
+  <link rel="icon" href="../assets/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <title>Briefing para criação de site | Henrique Silva</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="briefing.css">
+  <script src="briefing.js" defer></script>
+</head>
+<body class="briefing-page">
+  <a class="skip-link" href="#briefing-form">Pular para o formulário</a>
+
+  <header class="briefing-header">
+    <div class="briefing-container header-content">
+      <a class="logo" href="../index.html" aria-label="H.Silva — voltar ao site principal"><span>H.</span>SILVA</a>
+      <a class="back-link" href="../index.html">Voltar ao site <span aria-hidden="true">→</span></a>
+    </div>
+  </header>
+
+  <main>
+    <section class="briefing-intro" aria-labelledby="page-title">
+      <div class="briefing-container">
+        <p class="eyebrow">Vamos começar seu projeto</p>
+        <h1 id="page-title">Briefing para criação de site</h1>
+        <p>Este formulário reúne as principais informações necessárias para entender sua empresa e criar um site alinhado aos seus objetivos.</p>
+        <div class="time-notice" role="note">
+          <span aria-hidden="true">◷</span>
+          O preenchimento leva aproximadamente 10 minutos.
+        </div>
+      </div>
+    </section>
+
+    <section class="form-section">
+      <div class="briefing-container form-layout">
+        <aside class="progress-panel" aria-label="Progresso do briefing">
+          <div class="progress-copy">
+            <span>Seu progresso</span>
+            <strong><span id="current-step-number">1</span> de <span id="total-steps">15</span></strong>
+          </div>
+          <div class="progress-track" role="progressbar" aria-label="Progresso do formulário" aria-valuemin="1" aria-valuemax="15" aria-valuenow="1">
+            <span id="progress-fill"></span>
+          </div>
+          <p id="progress-title">Informações básicas</p>
+        </aside>
+
+        <form id="briefing-form" novalidate>
+          <p class="required-note"><span aria-hidden="true">*</span> Campos obrigatórios</p>
+          <div id="form-message" class="form-message" role="alert" aria-live="polite" tabindex="-1"></div>
+
+          <fieldset class="form-step active" data-step-title="Informações básicas">
+            <legend><span>01</span> Informações básicas</legend>
+            <p class="step-description">Comece pelos dados principais da empresa e de quem acompanhará o projeto.</p>
+            <div class="field-grid">
+              <div class="field">
+                <label for="company">Nome da empresa ou escritório <span>*</span></label>
+                <input id="company" name="company" type="text" autocomplete="organization" required data-label="Nome">
+              </div>
+              <div class="field">
+                <label for="responsible">Nome do responsável <span>*</span></label>
+                <input id="responsible" name="responsible" type="text" autocomplete="name" required data-label="Responsável">
+              </div>
+              <div class="field">
+                <label for="phone">Telefone / WhatsApp <span>*</span></label>
+                <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required data-label="Telefone / WhatsApp">
+              </div>
+              <div class="field">
+                <label for="email">E-mail <span>*</span></label>
+                <input id="email" name="email" type="email" autocomplete="email" required data-label="E-mail">
+              </div>
+              <div class="field field-full">
+                <label for="address">Endereço</label>
+                <input id="address" name="address" type="text" autocomplete="street-address" data-label="Endereço">
+              </div>
+              <div class="field">
+                <label for="instagram">Instagram</label>
+                <input id="instagram" name="instagram" type="text" placeholder="@suaempresa" data-label="Instagram">
+              </div>
+              <div class="field">
+                <label for="socials">Outras redes sociais</label>
+                <input id="socials" name="socials" type="text" data-label="Outras redes sociais">
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-step" data-step-title="Sobre a empresa">
+            <legend><span>02</span> Sobre a empresa</legend>
+            <p class="step-description">Não precisa escrever muito. Um resumo já ajuda a entender o contexto do negócio.</p>
+            <div class="field">
+              <label for="history">Conte brevemente a história da empresa <span>*</span></label>
+              <textarea id="history" name="history" rows="5" required data-label="História"></textarea>
+            </div>
+            <div class="field-grid">
+              <div class="field">
+                <label for="company-age">Há quanto tempo atua?</label>
+                <input id="company-age" name="companyAge" type="text" data-label="Tempo de atuação">
+              </div>
+              <div class="field">
+                <label for="team-size">Quantas pessoas fazem parte da equipe?</label>
+                <input id="team-size" name="teamSize" type="text" inputmode="numeric" data-label="Tamanho da equipe">
+              </div>
+              <div class="field field-full">
+                <label for="main-services">Quais são os principais serviços ou áreas de atuação? <span>*</span></label>
+                <textarea id="main-services" name="mainServices" rows="4" required data-label="Principais serviços"></textarea>
+              </div>
+              <div class="field field-full">
+                <label for="service-area">Quais cidades ou regiões atende?</label>
+                <input id="service-area" name="serviceArea" type="text" data-label="Regiões atendidas">
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-step" data-step-title="Público">
+            <legend><span>03</span> Público</legend>
+            <p class="step-description">Quem você deseja alcançar com o novo site?</p>
+            <div class="field">
+              <span class="field-label">Quem é o público principal? <span>*</span></span>
+              <div class="choice-grid" data-required-group="audience">
+                <label class="choice"><input type="radio" name="audience" value="Pessoa física" required><span>Pessoa física</span></label>
+                <label class="choice"><input type="radio" name="audience" value="Empresas"><span>Empresas</span></label>
+                <label class="choice"><input type="radio" name="audience" value="Ambos"><span>Ambos</span></label>
+              </div>
+            </div>
+            <div class="field">
+              <label for="ideal-client">Descreva brevemente o perfil do cliente ideal</label>
+              <textarea id="ideal-client" name="idealClient" rows="5" data-label="Perfil do cliente ideal"></textarea>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-step" data-step-title="Objetivo do site">
+            <legend><span>04</span> Objetivo do site</legend>
+            <p class="step-description">Marque tudo o que espera alcançar. Você pode escolher mais de uma opção.</p>
+            <div class="field">
+              <span class="field-label">O que o site deve ajudar a fazer? <span>*</span></span>
+              <div class="choice-grid check-grid" data-required-group="siteGoals">
+                <label class="choice"><input type="checkbox" name="siteGoals" value="Apresentar a empresa"><span>Apresentar a empresa</span></label>
+                <label class="choice"><input type="checkbox" name="siteGoals" value="Gerar contatos"><span>Gerar contatos</span></label>
+                <label class="choice"><input type="checkbox" name="siteGoals" value="Receber mensagens pelo WhatsApp"><span>Receber mensagens pelo WhatsApp</span></label>
+                <label class="choice"><input type="checkbox" name="siteGoals" value="Mostrar serviços"><span>Mostrar serviços</span></label>
+                <label class="choice"><input type="checkbox" name="siteGoals" value="Fortalecer a marca"><span>Fortalecer a marca</span></label>
+                <label class="choice"><input type="checkbox" name="siteGoals" value="Aumentar a credibilidade"><span>Aumentar a credibilidade</span></label>
+                <label class="choice"><input type="checkbox" name="siteGoals" value="Facilitar o atendimento"><span>Facilitar o atendimento</span></label>
+                <label class="choice"><input type="checkbox" name="siteGoals" value="Outro"><span>Outro</span></label>
+              </div>
+            </div>
+            <div class="field">
+              <label for="main-goal">Explique o principal objetivo <span>*</span></label>
+              <textarea id="main-goal" name="mainGoal" rows="4" required data-label="Principal objetivo"></textarea>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-step" data-step-title="Serviços e conteúdo">
+            <legend><span>05</span> Serviços e conteúdo</legend>
+            <p class="step-description">Essas respostas ajudam a planejar os textos e as informações do site.</p>
+            <div class="field">
+              <label for="website-services">Quais serviços devem aparecer no site? <span>*</span></label>
+              <textarea id="website-services" name="websiteServices" rows="4" required data-label="Serviços que devem aparecer"></textarea>
+            </div>
+            <div class="field">
+              <label for="common-questions">Quais informações os clientes mais perguntam antes de contratar?</label>
+              <textarea id="common-questions" name="commonQuestions" rows="4" data-label="Perguntas antes da contratação"></textarea>
+            </div>
+            <div class="field">
+              <label for="site-questions">Quais dúvidas deveriam ser respondidas no site?</label>
+              <textarea id="site-questions" name="siteQuestions" rows="4" data-label="Dúvidas a responder"></textarea>
+            </div>
+            <div class="field-grid">
+              <div class="field">
+                <label for="one-off-service">O escritório realiza atendimentos avulsos?</label>
+                <select id="one-off-service" name="oneOffService" data-label="Atendimentos avulsos">
+                  <option value="">Selecione</option><option>Sim</option><option>Não</option><option>Depende do serviço</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="legal-info">Há informações legais, avisos ou observações importantes?</label>
+                <textarea id="legal-info" name="legalInfo" rows="3" data-label="Informações legais ou avisos"></textarea>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-step" data-step-title="Posicionamento">
+            <legend><span>06</span> Posicionamento</legend>
+            <p class="step-description">Escolha as sensações que o site deve transmitir ao visitante.</p>
+            <div class="field">
+              <span class="field-label">Quais qualidades o site deve transmitir?</span>
+              <div class="choice-grid check-grid">
+                <label class="choice"><input type="checkbox" name="qualities" value="Confiança"><span>Confiança</span></label>
+                <label class="choice"><input type="checkbox" name="qualities" value="Integridade"><span>Integridade</span></label>
+                <label class="choice"><input type="checkbox" name="qualities" value="Serenidade"><span>Serenidade</span></label>
+                <label class="choice"><input type="checkbox" name="qualities" value="Agilidade"><span>Agilidade</span></label>
+                <label class="choice"><input type="checkbox" name="qualities" value="Proximidade"><span>Proximidade</span></label>
+                <label class="choice"><input type="checkbox" name="qualities" value="Experiência"><span>Experiência</span></label>
+                <label class="choice"><input type="checkbox" name="qualities" value="Organização"><span>Organização</span></label>
+                <label class="choice"><input type="checkbox" name="qualities" value="Autoridade"><span>Autoridade</span></label>
+                <label class="choice"><input type="checkbox" name="qualities" value="Modernidade"><span>Modernidade</span></label>
+                <label class="choice"><input type="checkbox" name="qualities" value="Tradição"><span>Tradição</span></label>
+              </div>
+            </div>
+            <div class="field">
+              <label for="three-qualities">Se o visitante lembrasse de apenas três qualidades da empresa, quais deveriam ser?</label>
+              <input id="three-qualities" name="threeQualities" type="text" data-label="Três qualidades principais">
+            </div>
+          </fieldset>
+
+          <fieldset class="form-step" data-step-title="Diferenciais">
+            <legend><span>07</span> Diferenciais</legend>
+            <p class="step-description">Conte o que torna sua empresa uma escolha especial.</p>
+            <div class="field">
+              <label for="why-choose">Por que um cliente deveria escolher sua empresa?</label>
+              <textarea id="why-choose" name="whyChoose" rows="4" data-label="Por que escolher a empresa"></textarea>
+            </div>
+            <div class="field">
+              <label for="advantages">Quais são os principais diferenciais?</label>
+              <textarea id="advantages" name="advantages" rows="4" data-label="Principais diferenciais"></textarea>
+            </div>
+            <div class="field">
+              <label for="special-experience">Existe algum método, atendimento ou experiência que mereça destaque?</label>
+              <textarea id="special-experience" name="specialExperience" rows="4" data-label="Método ou experiência em destaque"></textarea>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-step" data-step-title="Identidade visual">
+            <legend><span>08</span> Identidade visual</legend>
+            <p class="step-description">Marque os materiais que a empresa já possui. Os arquivos serão solicitados depois.</p>
+            <div class="field">
+              <span class="field-label">A empresa já possui:</span>
+              <div class="choice-grid check-grid">
+                <label class="choice"><input type="checkbox" name="brandAssets" value="Logotipo"><span>Logotipo</span></label>
+                <label class="choice"><input type="checkbox" name="brandAssets" value="Paleta de cores"><span>Paleta de cores</span></label>
+                <label class="choice"><input type="checkbox" name="brandAssets" value="Manual da marca"><span>Manual da marca</span></label>
+                <label class="choice"><input type="checkbox" name="brandAssets" value="Fontes definidas"><span>Fontes definidas</span></label>
+                <label class="choice"><input type="checkbox" name="brandAssets" value="Fotos profissionais"><span>Fotos profissionais</span></label>
+                <label class="choice"><input type="checkbox" name="brandAssets" value="Materiais institucionais"><span>Materiais institucionais</span></label>
+              </div>
+            </div>
+            <div class="field">
+              <label for="asset-sharing">Informe onde esses arquivos serão enviados ou compartilhados</label>
+              <input id="asset-sharing" name="assetSharing" type="text" placeholder="Ex.: Google Drive, e-mail ou WhatsApp" data-label="Onde os arquivos serão compartilhados">
+            </div>
+          </fieldset>
+
+          <fieldset class="form-step" data-step-title="Preferências visuais">
+            <legend><span>09</span> Preferências visuais</legend>
+            <p class="step-description">Referências ajudam a entender seu gosto. Não é necessário conhecer termos de design.</p>
+            <div class="field-grid">
+              <div class="field">
+                <label for="colors-use">Existem cores que devem ser usadas?</label>
+                <textarea id="colors-use" name="colorsUse" rows="3" data-label="Cores desejadas"></textarea>
+              </div>
+              <div class="field">
+                <label for="colors-avoid">Existem cores que devem ser evitadas?</label>
+                <textarea id="colors-avoid" name="colorsAvoid" rows="3" data-label="Cores a evitar"></textarea>
+              </div>
+              <div class="field">
+                <label for="sites-like">Existem sites que você gosta?</label>
+                <textarea id="sites-like" name="sitesLike" rows="3" placeholder="Cole os endereços ou informe os nomes" data-label="Sites de que gosta"></textarea>
+              </div>
+              <div class="field">
+                <label for="what-like">O que você gosta nesses sites?</label>
+                <textarea id="what-like" name="whatLike" rows="3" data-label="O que gosta nas referências"></textarea>
+              </div>
+              <div class="field">
+                <label for="sites-dislike">Existem sites que não gosta?</label>
+                <textarea id="sites-dislike" name="sitesDislike" rows="3" data-label="Sites de que não gosta"></textarea>
+              </div>
+              <div class="field">
+                <label for="what-avoid">O que deve ser evitado?</label>
+                <textarea id="what-avoid" name="whatAvoid" rows="3" data-label="O que deve ser evitado"></textarea>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-step" data-step-title="Estrutura do site">
+            <legend><span>10</span> Estrutura do site</legend>
+            <p class="step-description">Marque as páginas ou áreas que imagina para o site. A estrutura final será definida no projeto.</p>
+            <div class="field">
+              <span class="field-label">Quais páginas devem fazer parte do site?</span>
+              <div class="choice-grid check-grid">
+                <label class="choice"><input type="checkbox" name="pages" value="Página inicial"><span>Página inicial</span></label>
+                <label class="choice"><input type="checkbox" name="pages" value="Sobre"><span>Sobre</span></label>
+                <label class="choice"><input type="checkbox" name="pages" value="Serviços"><span>Serviços</span></label>
+                <label class="choice"><input type="checkbox" name="pages" value="Áreas de atuação"><span>Áreas de atuação</span></label>
+                <label class="choice"><input type="checkbox" name="pages" value="Equipe"><span>Equipe</span></label>
+                <label class="choice"><input type="checkbox" name="pages" value="Perguntas frequentes"><span>Perguntas frequentes</span></label>
+                <label class="choice"><input type="checkbox" name="pages" value="Contato"><span>Contato</span></label>
+                <label class="choice"><input type="checkbox" name="pages" value="Blog"><span>Blog</span></label>
+                <label class="choice"><input type="checkbox" name="pages" value="Depoimentos"><span>Depoimentos</span></label>
+                <label class="choice"><input type="checkbox" name="pages" value="Outra página"><span>Outra página</span></label>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-step" data-step-title="Fotos">
+            <legend><span>11</span> Fotos</legend>
+            <p class="step-description">Fotos próprias e de boa qualidade aumentam a credibilidade do site.</p>
+            <div class="field">
+              <span class="field-label">Quais fotos a empresa possui?</span>
+              <div class="choice-grid check-grid">
+                <label class="choice"><input type="checkbox" name="photos" value="Foto da equipe"><span>Foto da equipe</span></label>
+                <label class="choice"><input type="checkbox" name="photos" value="Foto dos sócios"><span>Foto dos sócios</span></label>
+                <label class="choice"><input type="checkbox" name="photos" value="Foto do escritório"><span>Foto do escritório</span></label>
+                <label class="choice"><input type="checkbox" name="photos" value="Fotos dos serviços"><span>Fotos dos serviços</span></label>
+                <label class="choice"><input type="checkbox" name="photos" value="Nenhuma foto profissional"><span>Nenhuma foto profissional</span></label>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-step" data-step-title="Contato principal">
+            <legend><span>12</span> Contato principal</legend>
+            <p class="step-description">Qual canal deve receber mais destaque para os visitantes?</p>
+            <div class="field">
+              <span class="field-label">Escolha o contato principal</span>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="mainContact" value="WhatsApp"><span>WhatsApp</span></label>
+                <label class="choice"><input type="radio" name="mainContact" value="Telefone"><span>Telefone</span></label>
+                <label class="choice"><input type="radio" name="mainContact" value="E-mail"><span>E-mail</span></label>
+                <label class="choice"><input type="radio" name="mainContact" value="Formulário"><span>Formulário</span></label>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-step" data-step-title="Domínio e hospedagem">
+            <legend><span>13</span> Domínio e hospedagem</legend>
+            <p class="step-description">Domínio é o endereço do site, por exemplo: <strong>suaempresa.com.br</strong></p>
+            <div class="field-grid">
+              <div class="field">
+                <span class="field-label">Você já possui um domínio próprio?</span>
+                <div class="choice-grid compact">
+                  <label class="choice"><input type="radio" name="hasDomain" value="Sim"><span>Sim</span></label>
+                  <label class="choice"><input type="radio" name="hasDomain" value="Não"><span>Não</span></label>
+                  <label class="choice"><input type="radio" name="hasDomain" value="Não sei"><span>Não sei</span></label>
+                </div>
+              </div>
+              <div class="field conditional-field" id="domain-field" hidden>
+                <label for="domain">Informe o domínio</label>
+                <input id="domain" name="domain" type="text" placeholder="suaempresa.com.br" data-label="Domínio informado">
+              </div>
+              <div class="field field-full">
+                <span class="field-label">Você já possui hospedagem?</span>
+                <div class="choice-grid compact">
+                  <label class="choice"><input type="radio" name="hasHosting" value="Sim"><span>Sim</span></label>
+                  <label class="choice"><input type="radio" name="hasHosting" value="Não"><span>Não</span></label>
+                  <label class="choice"><input type="radio" name="hasHosting" value="Não sei"><span>Não sei</span></label>
+                </div>
+              </div>
+            </div>
+            <aside class="domain-notice" aria-labelledby="domain-notice-title">
+              <strong id="domain-notice-title">Importante sobre o domínio</strong>
+              <p>Caso a empresa ainda não possua um domínio próprio, será necessário registrar um endereço, como suaempresa.com.br.</p>
+              <p>O domínio deve ser registrado em nome do cliente ou da empresa e possui cobrança periódica, normalmente anual.</p>
+              <p>O custo do domínio não está incluído no desenvolvimento gratuito ou no valor do site.</p>
+              <p>Posso orientar e ajudar na configuração, mas o pagamento do registro será feito pelo cliente diretamente ao provedor responsável.</p>
+            </aside>
+          </fieldset>
+
+          <fieldset class="form-step" data-step-title="Prazo e aprovação">
+            <legend><span>14</span> Prazo e aprovação</legend>
+            <p class="step-description">Definir responsáveis ajuda a manter o projeto organizado.</p>
+            <div class="field">
+              <label for="launch-date">Existe alguma data desejada para lançamento?</label>
+              <input id="launch-date" name="launchDate" type="text" placeholder="Ex.: até o final de setembro" data-label="Data desejada para lançamento">
+            </div>
+            <div class="field">
+              <label for="approver">Quem será responsável por aprovar os textos e o visual?</label>
+              <input id="approver" name="approver" type="text" data-label="Responsável pela aprovação">
+            </div>
+            <div class="field">
+              <label for="other-approvers">Existe mais alguma pessoa envolvida na aprovação?</label>
+              <input id="other-approvers" name="otherApprovers" type="text" data-label="Outras pessoas envolvidas">
+            </div>
+          </fieldset>
+
+          <fieldset class="form-step" data-step-title="Observações">
+            <legend><span>15</span> Observações</legend>
+            <p class="step-description">Última etapa. Use este espaço para complementar o briefing.</p>
+            <div class="field">
+              <label for="notes">Existe alguma informação importante que não foi perguntada?</label>
+              <textarea id="notes" name="notes" rows="8" data-label="Observações adicionais"></textarea>
+            </div>
+            <div class="privacy-notice" role="note">
+              <span aria-hidden="true">✓</span>
+              <p>As informações serão utilizadas apenas para entender o projeto e preparar a proposta ou estrutura inicial do site.</p>
+            </div>
+          </fieldset>
+
+          <div class="form-actions">
+            <button class="button button-secondary" id="prev-button" type="button">Voltar</button>
+            <button class="button button-primary" id="next-button" type="button">Avançar <span aria-hidden="true">→</span></button>
+            <button class="button button-primary submit-button" id="submit-button" type="submit">Enviar briefing pelo WhatsApp <span aria-hidden="true">↗</span></button>
+          </div>
+          <button class="clear-button" id="clear-button" type="button">Limpar formulário</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="briefing-footer">
+    <div class="briefing-container">
+      <a class="logo" href="../index.html"><span>H.</span>SILVA</a>
+      <p>© 2026 Henrique Silva. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>
