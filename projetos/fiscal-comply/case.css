@@ -742,3 +742,20 @@
     font-size: clamp(1.8rem, 8vw, 2.6rem);
   }
 }
+
+/* Capturas reais do portfólio Fiscal Comply */
+.case-browser { min-width: 0; margin: 0; overflow: hidden; }
+.case-real-preview { display: block; width: 100%; height: auto; border-radius: 12px; object-fit: contain; background: #101514; }
+.portfolio-capture { margin: 0; min-width: 0; padding: 0.65rem; border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius); background: #111513; align-self: start; overflow: hidden; }
+.portfolio-capture img { display: block; width: 100%; height: auto; max-height: 540px; object-fit: contain; object-position: top center; border-radius: 8px; background: #080a09; }
+.portfolio-capture figcaption { margin-top: .65rem; padding: .1rem .3rem .3rem; color: var(--gray-300); font-size: .82rem; line-height: 1.5; }
+.portfolio-capture.screenshot-mobile { width: 100%; min-height: 0; }
+.portfolio-capture.screenshot-mobile img { max-height: 540px; }
+@media (min-width: 800px) {
+  .portfolio-capture.screenshot-desktop { min-height: 0; }
+  .portfolio-capture.screenshot-mobile { min-height: 0; }
+}
+@media (max-width: 799px) {
+  .portfolio-capture.screenshot-mobile { max-width: 350px; justify-self: center; }
+  .portfolio-capture img { max-height: none; }
+}
