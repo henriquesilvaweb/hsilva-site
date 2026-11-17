@@ -1921,3 +1921,15 @@ img, svg { max-width: 100%; }
   .nav-link { font-size: .73rem; white-space: nowrap; }
   .logo { flex-shrink: 0; }
 }
+
+/* Abertura: captura de um projeto real no lugar da ilustração decorativa. */
+.hero-portfolio-preview { display: flex; width: 100%; min-width: 0; min-height: 0; align-items: center; justify-content: center; }
+.portfolio-hero-figure { width: 100%; margin: 0; min-width: 0; border: 1px solid rgba(255,255,255,.14); border-radius: 18px; background: #111513; box-shadow: 0 24px 65px rgba(0,0,0,.36); overflow: hidden; }
+.portfolio-hero-figure > a { display: block; padding: 0.65rem; }
+.portfolio-hero-figure img { display: block; width: 100%; height: auto; max-height: 350px; object-fit: contain; object-position: center top; border-radius: 10px; background: #080a09; }
+.portfolio-hero-figure figcaption { display: flex; flex-direction: column; align-items: flex-start; gap: .2rem; padding: .75rem 1.1rem 1.15rem; border-top: 1px solid rgba(255,255,255,.08); font-size: .82rem; line-height: 1.5; }
+.portfolio-hero-figure figcaption strong { color: var(--white); font-size: .91rem; }
+.portfolio-hero-figure figcaption span { color: var(--gray-300); }
+.portfolio-hero-figure figcaption a { margin-top: .45rem; color: var(--green); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+@media (min-width: 800px) { .hero-portfolio-preview { min-height: 0; } .hero-portfolio-preview .portfolio-hero-figure { max-width: 550px; } }
+@media (max-width: 767px) { .hero-portfolio-preview { display: none; } }
