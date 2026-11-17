@@ -1743,3 +1743,11 @@ h2 span {
     transform: none;
   }
 }
+
+/* Mobile: manter a abertura focada na oferta, sem elementos decorativos cobrindo conteúdo. */
+@media (max-width: 767px) {
+  .hero-visual { display: none; }
+  .floating-whatsapp { display: none; }
+  .hero-grid { gap: 1.5rem; }
+  .hero-proof { margin-bottom: 0; }
+}
