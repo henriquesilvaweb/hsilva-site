@@ -1913,3 +1913,11 @@ img, svg { max-width: 100%; }
   .hero-glow { max-width: 100%; }
   .hero-proof { margin-top: 1.5rem; }
 }
+
+/* Evita que os seis links disputem espaço com a marca em tablets. */
+@media (min-width: 800px) and (max-width: 1120px) {
+  .header-inner { gap: 1rem; }
+  .main-nav { gap: clamp(.65rem, 1.5vw, 1.2rem); }
+  .nav-link { font-size: .73rem; white-space: nowrap; }
+  .logo { flex-shrink: 0; }
+}
