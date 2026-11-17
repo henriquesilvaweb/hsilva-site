@@ -1899,3 +1899,17 @@ h2 span {
     line-height: 1.25;
   }
 }
+
+/* Auditoria de largura: permitir que filhos de grid reduzam sem estourar a viewport. */
+html { max-width: 100%; overflow-x: clip; }
+.hero, .services, .projects, .about, .process, .contact { max-width: 100%; overflow-x: clip; }
+.hero-grid, .hero-copy, .services-grid, .project-card, .project-info, .about-grid { min-width: 0; }
+.hero-grid > *, .services-grid > *, .about-grid > *, .project-card > * { min-width: 0; }
+img, svg { max-width: 100%; }
+
+@media (max-width: 767px) {
+  .hero { min-height: 0; padding: calc(var(--header-height) + 1.5rem) 0 2.75rem; align-items: start; }
+  .hero-grid { gap: 1rem; }
+  .hero-glow { max-width: 100%; }
+  .hero-proof { margin-top: 1.5rem; }
+}
