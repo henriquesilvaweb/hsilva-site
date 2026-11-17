@@ -727,3 +727,25 @@ blockquote p {
     gap: 5rem;
   }
 }
+
+/* Ajustes estruturais para telas estreitas e seções editoriais largas. */
+html { max-width: 100%; overflow-x: clip; }
+.hero, .change-section, .study-section, .site-footer { max-width: 100%; overflow-x: clip; }
+.container, .hero-inner, .editorial-grid, .editorial-content, .case-study-grid, .case-details { min-width: 0; }
+.editorial-grid > *, .case-study-grid > *, .comparison-grid > *, .method-grid > * { min-width: 0; }
+img, figure, svg { max-width: 100%; }
+h1, h2, h3, p, li { overflow-wrap: break-word; }
+.hero::before { right: 0; transform: translateX(20%); }
+.hero-case-note { margin: 1rem 0 0; color: var(--text-2); font-size: .9rem; }
+.hero-case-note a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
+.button-secondary { background: transparent; border-color: var(--line-strong); color: var(--text); }
+.hero-actions { flex-wrap: wrap; }
+@media (max-width: 767px) {
+  .hero { min-height: 0; padding: 7.25rem 0 2.75rem; }
+  .hero h1 { font-size: clamp(2rem, 8.3vw, 3.7rem); }
+  .hero-copy { margin-top: 1.2rem; }
+  .hero-actions { margin-top: 1.25rem; }
+  .institutional-line { margin-top: 1.75rem; }
+  .container { width: min(calc(100% - 32px), var(--container)); }
+  .case-study-grid { gap: 1.4rem; }
+}
